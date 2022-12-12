@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS rotating bin</title>
+
+    <style>
+      :root {
+        /*globel variables*/
+        --upper-gradient-color: #4d4102da;
+        --lower-gradient-color: #a339ebcb;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 50vh;
+        background-color: #050505;
+      }
+      .cube {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        transform-style: preserve-3d;
+        transform: rotateX(-30deg);
+        animation: rotate 5s linear infinite;
+        /* animation: sign 4s linear infinite; */
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotateX(-30deg) rotateY(0deg);
+        }
+        100% {
+          transform: rotateX(-30deg) rotateY(-360deg);
+        }
+      }
+
+      .cube div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+      }
+
+      span {
+        position: absolute; /* possitioning spans independently */
+        width: 100%;
+        height: 100%;
+        border: 1px solid #555555;
+        background: linear-gradient(
+          var(--upper-gradient-color),
+          var(--lower-gradient-color)
+        );
+        transform: rotateY(calc(90deg * var(--i))) translateZ(79px);
+      }
+      .bottom {
+        position: absolute;
+        top: 120px;
+        background-color: beige;
+        transform: rotateX(90deg) translateZ(40px);
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="cube">
+      <div>
+        <span style="--i: 0"></span>
+        <span style="--i: 1"></span>
+        <span style="--i: 2"></span>
+        <span style="--i: 3"></span>
+      </div>
+      <div class="bottom"></div>
+    </div>
+  </body>
+</html>
